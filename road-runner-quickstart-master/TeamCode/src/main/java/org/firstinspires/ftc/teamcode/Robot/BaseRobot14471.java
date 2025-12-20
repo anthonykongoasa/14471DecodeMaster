@@ -117,6 +117,20 @@ public class BaseRobot14471 {
         rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
     }
 
+    /**
+     * This method is intended for testing pidf with variable values.
+     *
+     * @param p
+     * @param i
+     * @param d
+     * @param f
+     */
+    public void testPIDF(double p, double i, double d, double f) {
+        PIDFCoefficients pidSettings = new PIDFCoefficients(p, i, d, f); //still need to tune F :(
+        leftShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
+        rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
+    }
+
     /** 
     * field centric only tele
     */
