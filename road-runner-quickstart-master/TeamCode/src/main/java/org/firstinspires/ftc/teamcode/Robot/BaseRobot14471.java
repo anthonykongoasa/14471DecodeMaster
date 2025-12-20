@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.hardware.NormalizedRGBA;
-import com.qualcomm.robotcore.hardware.SwitchableLight;
 import android.graphics.Color;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -34,8 +32,6 @@ public class BaseRobot14471 {
     public DcMotor belt = null;
 
     public IMU imu;
- 
-
 
     // Local OpMode members
     HardwareMap hwMap = null;
@@ -86,7 +82,7 @@ public class BaseRobot14471 {
         imu = hwMap.get(IMU.class, "imu");
 
         //TODO research inconsistency btwn predone logo facing direction and actual  
-        //LEFT vs RIGHT (RIGHT should be  right)
+        //LEFT vs RIGHT (RIGHT should be right)
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
         RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
@@ -118,7 +114,7 @@ public class BaseRobot14471 {
     }
 
     /**
-     * This method is intended for testing pidf with variable values.
+     * This method is intended for testing/tuning pidf with variable values.
      *
      * @param p
      * @param i
@@ -132,7 +128,7 @@ public class BaseRobot14471 {
     }
 
     /** 
-    * field centric only tele
+    * field centric, only tele
     */
     public void driveFieldCentric(double gamepadXPow, double gamepadYPow, double gamepadRotPow, double robotHeading){
 
