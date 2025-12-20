@@ -12,11 +12,12 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
 import java.util.List;
 
 @TeleOp(name="Main_Teleop_Code", group="Training")
-public class Main_Teleop_Code extends OpMode {
+public class MainTeleop extends OpMode {
 
     BaseRobot14471 robot = new BaseRobot14471(false);  // TeleOp robot
     private double SHOOTER_VELOCITY = 0;
