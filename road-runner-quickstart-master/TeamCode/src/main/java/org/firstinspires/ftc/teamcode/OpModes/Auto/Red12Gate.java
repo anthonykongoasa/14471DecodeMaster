@@ -51,7 +51,7 @@ public class Red12Gate extends LinearOpMode {
 
                         .build()
         );
-        shoot();
+        robot.shoot();
 
         //------------------------------intake POSITION #1----------------
         Actions.runBlocking(
@@ -73,7 +73,7 @@ public class Red12Gate extends LinearOpMode {
                         .build()
         );
 
-        shoot();
+        robot.shoot();
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(98, 23), Math.toRadians(91), new TranslationalVelConstraint(70))
@@ -91,7 +91,7 @@ public class Red12Gate extends LinearOpMode {
         );
 
 
-        shoot();
+        robot.shoot();
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
@@ -107,7 +107,7 @@ public class Red12Gate extends LinearOpMode {
         );
         robot.leftShooter.setVelocity(-NEARVEL-25);
         robot.rightShooter.setVelocity(NEARVEL+25);
-        shoot();
+        robot.shoot();
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(82, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
@@ -119,23 +119,23 @@ public class Red12Gate extends LinearOpMode {
 
 
     }
-    private void shoot() {
+ //   private void shoot() {
 
-        robot.intake.setPower(ON);
+  //      robot.intake.setPower(ON);
 
-        robot.leftIndex.setPosition(0);
-        robot.rightIndex.setPosition(1);
-        robot.belt.setPower(-1);
-        delay(0.85); // wait 1 seconds for shooting
+    ///    robot.leftIndex.setPosition(0);
+    //    robot.rightIndex.setPosition(1);
+   //     robot.belt.setPower(-1);
+    //    delay(0.85); // wait 1 seconds for shooting
 
         // Stop all
 
         //spinning against
-        robot.leftIndex.setPosition(0.6);
-        robot.rightIndex.setPosition(0.4);
+  //      robot.leftIndex.setPosition(0.6);
+ //       robot.rightIndex.setPosition(0.4);
         // belt.setPower(-0.3);
 
-    }
+  //  }
     // -------- Delay helper ----------
     private void delay(double t) {
         runtime.reset();
