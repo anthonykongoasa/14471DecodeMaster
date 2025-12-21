@@ -49,11 +49,9 @@ public class Red12 extends LinearOpMode {
                         // Shoot #1
                         .strafeToLinearHeading(shootPos, Math.toRadians(-53), new TranslationalVelConstraint(60))
 
-
-
                         .build()
         );
-        shoot();
+        robot.shoot();
 
         //------------------------------intake POSITION #1----------------
         Actions.runBlocking(
@@ -61,9 +59,6 @@ public class Red12 extends LinearOpMode {
                         .strafeToLinearHeading(new Vector2d(77, 22), Math.toRadians(86), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(new Vector2d(77, 42), Math.toRadians(86), new TranslationalVelConstraint(70))
 
-                        //-------------GATE----------
-                        //.strafeToLinearHeading(new Vector2d(87, 36), Math.toRadians(0), new TranslationalVelConstraint(70))
-                       // .strafeToLinearHeading(new Vector2d(87, 60), Math.toRadians(0), new TranslationalVelConstraint(70))
 
                         .build()
         );
@@ -75,7 +70,7 @@ public class Red12 extends LinearOpMode {
                         .build()
         );
 
-        shoot();
+        robot.shoot();
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(98, 23), Math.toRadians(91), new TranslationalVelConstraint(70))
@@ -93,7 +88,7 @@ public class Red12 extends LinearOpMode {
         );
 
 
-        shoot();
+        robot.shoot();
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
@@ -109,7 +104,7 @@ public class Red12 extends LinearOpMode {
         );
         robot.leftShooter.setVelocity(-NEARVEL-25);
         robot.rightShooter.setVelocity(NEARVEL+25);
-        shoot();
+        robot.shoot();
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(82, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
@@ -121,20 +116,20 @@ public class Red12 extends LinearOpMode {
 
 
     }
-    private void shoot() {
+//    private void shoot() {
+//
+ //       robot.intake.setPower(ON);
 
-        robot.intake.setPower(ON);
-
-        robot.leftIndex.setPosition(0);
-        robot.rightIndex.setPosition(1);
-        robot.belt.setPower(-1);
-        delay(0.85); // wait 1 seconds for shooting
+  //      robot.leftIndex.setPosition(0);
+    //    robot.rightIndex.setPosition(1);
+   //     robot.belt.setPower(-1);
+   //     delay(0.85); // wait 1 seconds for shooting
 
         // Stop all
 
         //spinning against
-        robot.leftIndex.setPosition(0.6);
-        robot.rightIndex.setPosition(0.4);
+   //     robot.leftIndex.setPosition(0.6);
+   //     robot.rightIndex.setPosition(0.4);
         // belt.setPower(-0.3);
 
     }
