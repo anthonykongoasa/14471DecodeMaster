@@ -52,6 +52,8 @@ public class Red12 extends LinearOpMode {
                         .build()
         );
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
 
         //------------------------------intake POSITION #1----------------
         Actions.runBlocking(
@@ -71,6 +73,9 @@ public class Red12 extends LinearOpMode {
         );
 
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
+
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(98, 23), Math.toRadians(91), new TranslationalVelConstraint(70))
@@ -89,6 +94,8 @@ public class Red12 extends LinearOpMode {
 
 
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
@@ -104,7 +111,10 @@ public class Red12 extends LinearOpMode {
         );
         robot.leftShooter.setVelocity(-NEARVEL-25);
         robot.rightShooter.setVelocity(NEARVEL+25);
+
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
                         .strafeToLinearHeading(new Vector2d(82, 25), Math.toRadians(90), new TranslationalVelConstraint(70))

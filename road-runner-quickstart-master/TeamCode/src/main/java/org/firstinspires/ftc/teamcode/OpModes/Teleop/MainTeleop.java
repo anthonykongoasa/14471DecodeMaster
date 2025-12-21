@@ -116,21 +116,21 @@ public class MainTeleop extends OpMode {
         boolean bNow = gamepad1.b;
         if (bNow && !bPrev && robot.leftShooter.getVelocity() >= 1100) {
             //only then u can shoot
-            shoot();
+            robot.shoot();
         }
         else if (gamepad1.a) {
             //itnake
             robot.reverseIndexers();
-            intake.setPower(-1);
-            belt.setPower(-1);
+            robot.intake.setPower(-1);
+            robot.belt.setPower(-1);
 
         }
         else if (gamepad1.x) {
             robot.reverseEverything();
         }
         else {
-              if (!gamepad1.left_Bumper && !gamepad1.right_Bumper) {
-                  stopShooting();
+              if (!gamepad1.left_bumper && !gamepad1.right_bumper) {
+                  robot.stopShooting();
                   robot.reverseIndexers();
                   SHOOTER_VELOCITY = 0;
               }

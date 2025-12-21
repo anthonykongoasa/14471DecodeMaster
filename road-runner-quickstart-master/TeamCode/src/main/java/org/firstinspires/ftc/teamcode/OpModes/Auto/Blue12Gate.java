@@ -51,6 +51,8 @@ public class Blue12Gate extends LinearOpMode {
                         .build()
         );
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
 
         //------------------------------intake POSITION #1----------------
         Actions.runBlocking(
@@ -72,6 +74,8 @@ public class Blue12Gate extends LinearOpMode {
         );
 
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
         //intake 2
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(50)))
@@ -88,6 +92,8 @@ public class Blue12Gate extends LinearOpMode {
         );
 
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
         //intake 3
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(60)))
@@ -105,6 +111,8 @@ public class Blue12Gate extends LinearOpMode {
         robot.leftShooter.setVelocity(-NEARVEL-50);
         robot.rightShooter.setVelocity(NEARVEL+50);
         robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
 
 // Off-line final next to gate hoepfully
         Actions.runBlocking(

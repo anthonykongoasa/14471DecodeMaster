@@ -185,6 +185,12 @@ public class BaseRobot14471 {
         rightShooter.setVelocity(0);
 
     }
+    public void stopShootingAuto() {
+        intake.setPower(-1);
+        belt.setPower(-0.5);
+        leftIndex.setPosition(INDEX_REVERSE_L);
+        rightIndex.setPosition(INDEX_REVERSE_R);
+    }
 
 
 }
