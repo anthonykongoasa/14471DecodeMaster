@@ -14,7 +14,11 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 
 public class BaseRobot14471 {
-    
+
+    private double INDEX_FIRE_L = 0;
+    private double INDEX_FIRE_R =1;
+    private double INDEX_REVERSE_L = 0.6;
+    private double INDEX_REVERSE_R = 0.4;
     private Pose2d start;
     private boolean isAuto;
     public MecanumDrive drive;
@@ -148,21 +152,44 @@ public class BaseRobot14471 {
         rightRear.setPower(v4);
         
     }
-    public void startShooting() {
+    /* -------- Shooter / Intake Control -------- */
+
+    public void spinUpShooter(double velocity) {
+        leftShooter.setVelocity(velocity);
+        rightShooter.setVelocity(-velocity);
+    }
+
+    public void reverseEverything() {
+        leftIndex.setPosition(1);
+        rightIndex.setPosition(0);
+        intake.setPower(0.5);
+        belt.setPower(0.5);
+    }
+
+    public void reverseIndexers() {
+        leftIndex.setPosition(INDEX_REVERSE_L);
+        rightIndex.setPosition(INDEX_REVERSE_R);
+    }
+
+    public void shoot() {
         intake.setPower(-1);
         belt.setPower(-1);
-        leftIndex.setPosition(0);
-        rightIndex.setPosition(1);
+        leftIndex.setPosition(INDEX_FIRE_L);
+        rightIndex.setPosition(INDEX_FIRE_R);
     }
 
     public void stopShooting() {
-        belt.setPower(-0.5);
-        leftIndex.setPosition(0.6);
-        rightIndex.setPosition(0.4);
         intake.setPower(-0.1);
+        belt.setPower(-0.5);
+        leftShooter.setVelocity(0);
+        rightShooter.setVelocity(0);
+
     }
+
+
+}
 
     
 
-}
+
 

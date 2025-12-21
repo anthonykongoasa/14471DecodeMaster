@@ -33,6 +33,7 @@ public class MainTeleop extends OpMode {
 
     private int tagID = -1;
     private double range = -1;
+    boolean bPrev = false; // class-level variable
 
     @Override
     public void init() {
@@ -102,33 +103,39 @@ public class MainTeleop extends OpMode {
         }
 
         // ----------- Shooter (save voltage :(  ) -----------
-        if (gamepad1.left_bumper) SHOOTER_VELOCITY = -1150;
-        else if (gamepad1.right_bumper) SHOOTER_VELOCITY = -1300;
-        else SHOOTER_VELOCITY = 0;
+        if (gamepad1.left_bumper) SHOOTER_VELOCITY = 1150;
+        else if (gamepad1.right_bumper) SHOOTER_VELOCITY = 1300;
+
 
         robot.leftShooter.setVelocity(SHOOTER_VELOCITY);
         robot.rightShooter.setVelocity(-SHOOTER_VELOCITY);
 
         // ----------- Intake / feeder -----------
-        if (gamepad1.a) {
-            robot.intake.setPower(-1);
-            robot.belt.setPower(-0.5);
-        } else if (gamepad1.x) {
-            robot.intake.setPower(1);
-            robot.belt.setPower(0.5);
-        }
+
         //shooter
-         if (gamepad1.b && robot.leftShooter.getVelocity()<= -1100) {
-             startShooting();
-           //  sleep(900);
-             stopShooting();
+        boolean bNow = gamepad1.b;
+        if (bNow && !bPrev && robot.leftShooter.getVelocity() >= 1100) {
+            //only then u can shoot
+            shoot();
+        }
+        else if (gamepad1.a) {
+            //itnake
+            robot.reverseIndexers();
+            intake.setPower(-1);
+            belt.setPower(-1);
+
+        }
+        else if (gamepad1.x) {
+            robot.reverseEverything();
         }
         else {
-            //robot.belt.setPower()
-             robot.leftIndex.setPosition(0.6);
-             robot.rightIndex.setPosition(0.4);
-             robot.intake.setPower(-0.1);
+              if (!gamepad1.left_Bumper && !gamepad1.right_Bumper) {
+                  stopShooting();
+                  robot.reverseIndexers();
+                  SHOOTER_VELOCITY = 0;
+              }
         }
+        bPrev = bNow;
 
         // Reset IMU yaw
         if (gamepad1.y) robot.imu.resetYaw();
