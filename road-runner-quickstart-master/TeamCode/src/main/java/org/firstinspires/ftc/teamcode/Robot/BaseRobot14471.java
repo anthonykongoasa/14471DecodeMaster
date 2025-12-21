@@ -148,32 +148,18 @@ public class BaseRobot14471 {
         rightRear.setPower(v4);
         
     }
-    public void shoot() {
-
-
-        robot.intake.setPower(-1);
-
-        robot.leftIndex.setPosition(0);
-        robot.rightIndex.setPosition(1);
-        robot.belt.setPower(-1);
-        delay(0.85); // wait 1 seconds for shooting
-
-        // Stop all (reverse or wtvr)
-
-        if(isAuto) {
-            //spinning against
-            robot.leftIndex.setPosition(0.6);
-            robot.rightIndex.setPosition(0.4);
-            // belt.setPower(-0.3);
-        }
-
-
+    public void startShooting() {
+        intake.setPower(-1);
+        belt.setPower(-1);
+        leftIndex.setPosition(0);
+        rightIndex.setPosition(1);
     }
-    private void delay(double t) {
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < t)) {
-            // Optionally update telemetry
-        }
+
+    public void stopShooting() {
+        belt.setPower(-0.5);
+        leftIndex.setPosition(0.6);
+        rightIndex.setPosition(0.4);
+        intake.setPower(-0.1);
     }
 
     

@@ -132,7 +132,7 @@ public class Red12 extends LinearOpMode {
    //     robot.rightIndex.setPosition(0.4);
         // belt.setPower(-0.3);
 
-    }
+
     // -------- Delay helper ----------
     private void delay(double t) {
         runtime.reset();
@@ -141,4 +141,5 @@ public class Red12 extends LinearOpMode {
 
         }
     }
+
 }

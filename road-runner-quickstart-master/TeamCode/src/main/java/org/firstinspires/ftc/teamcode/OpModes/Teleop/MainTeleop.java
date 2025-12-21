@@ -118,15 +118,16 @@ public class MainTeleop extends OpMode {
             robot.belt.setPower(0.5);
         }
         //shooter
-         if (gamepad1.b) {
-            robot.shoot(false);
-
+         if (gamepad1.b && robot.leftShooter.getVelocity()<= -1100) {
+             startShooting();
+           //  sleep(900);
+             stopShooting();
         }
         else {
             //robot.belt.setPower()
-             robot.leftHand.setPower(0.6);
-             robot.rightHand.setPower(0.4);
-             intake.setPower(-0.1);
+             robot.leftIndex.setPosition(0.6);
+             robot.rightIndex.setPosition(0.4);
+             robot.intake.setPower(-0.1);
         }
 
         // Reset IMU yaw
