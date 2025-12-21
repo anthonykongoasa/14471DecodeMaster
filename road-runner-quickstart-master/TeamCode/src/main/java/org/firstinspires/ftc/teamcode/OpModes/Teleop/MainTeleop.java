@@ -38,6 +38,7 @@ public class MainTeleop extends OpMode {
 
     private boolean bPrev = false; // class-level variable
     private boolean shooting;
+    private double targetVel = 0;
 
 
     @Override
@@ -111,57 +112,59 @@ public class MainTeleop extends OpMode {
 
         double leftVel = robot.leftShooter.getVelocity();
         double rightVel = robot.rightShooter.getVelocity();
-        double targetVel = 1150; // or whatever your spin-up velocity is
+        if (gamepad1.left_bumper) {
+            targetVel = 1150;
+            robot.spinUpShooter(targetVel);
+        }
+        else if (gamepad1.right_bumper) {
+            targetVel = 1350;
+            robot.spinUpShooter(targetVel);
+        }
 
-        if (bNow && !bPrev && leftVel >= targetVel - 50 && rightVel >= targetVel - 50) {
+// ----------- Toggle shooting -----------
+        boolean bNow = gamepad1.b;
+
+
+
+        if (bNow && !bPrev &&
+                targetVel > 0 &&
+                leftVel  >= targetVel - 50 &&
+                rightVel >= targetVel - 50) {
+
             shooting = true;
         }
 
-        // ----------- Shooter (save voltage :(  ) -----------
-        if (gamepad1.left_bumper) robot.spinUpShooter(1150);
-
-        else if (gamepad1.right_bumper) robot.spinUpShooter(1350);
-
-
-
-
-        // ----------- Intake / feeder -----------
-
-        //shooter
-        boolean bNow = gamepad1.b;
-        if (bNow && !bPrev && robot.leftShooter.getVelocity() >= LEFT_SHOOTER_VEL -50
-            && robot.rightShooter.getVelocity <= RIGHT_SHOOTER_VEL + 50) {
-            shooting = true;  // start shooting
-        }
-
-// Stop shooting if A or X is pressed
+// Stop shooting if A or X pressed
         if (gamepad1.a || gamepad1.x) {
             shooting = false;
         }
 
-        bPrev = bNow; // update previous B state
+        bPrev = bNow;
 
-// Execute shooting / intake logic based on state
+// ----------- Execute state -----------
         if (shooting) {
             robot.shoot();
-        } else if (gamepad1.a) {
+        }
+        else if (gamepad1.a) {
             robot.reverseIndexers();
             robot.intake.setPower(-1);
             robot.belt.setPower(-1);
-        } else if (gamepad1.x) {
+        }
+        else if (gamepad1.x) {
             robot.reverseEverything();
-        } else {
+        }
+        else {
             robot.stopShooting();
             robot.reverseIndexers();
-
         }
 
         // Reset IMU yaw
         if (gamepad1.y) robot.imu.resetYaw();
 
         // Telemetry
-        telemetry.addData("left shooter Velocity", LEFT_SHOOTER_VEL);
-        telemetry.addData("right shooter Velocity", RIGHT_SHOOTER_VEL);
+        telemetry.addData("left shooter Velocity", leftVel);
+        telemetry.addData("right shooter Velocity", rightVel);
+        telemetry.addData("target velocity", targetVel);
         telemetry.addData("Tag ID", tagID);
         telemetry.addData("Range", range);
         telemetry.update();
