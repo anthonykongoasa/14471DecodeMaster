@@ -50,7 +50,7 @@ public class Blue12Gate extends LinearOpMode {
                         .strafeToLinearHeading(shootPos, Math.toRadians(53), new TranslationalVelConstraint(100))
                         .build()
         );
-        shoot();
+        robot.shoot();
 
         //------------------------------intake POSITION #1----------------
         Actions.runBlocking(
@@ -71,7 +71,7 @@ public class Blue12Gate extends LinearOpMode {
                         .build()
         );
 
-        shoot();
+        robot.shoot();
         //intake 2
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(50)))
@@ -87,7 +87,7 @@ public class Blue12Gate extends LinearOpMode {
                         .build()
         );
 
-        shoot();
+        robot.shoot();
         //intake 3
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(60)))
@@ -104,7 +104,7 @@ public class Blue12Gate extends LinearOpMode {
         );
         robot.leftShooter.setVelocity(-NEARVEL-50);
         robot.rightShooter.setVelocity(NEARVEL+50);
-        shoot();
+        robot.shoot();
 
 // Off-line final next to gate hoepfully
         Actions.runBlocking(
@@ -115,23 +115,23 @@ public class Blue12Gate extends LinearOpMode {
 
 
     }
-    private void shoot() {
+   // private void shoot() {
 
-        robot.intake.setPower(ON);
+     //   robot.intake.setPower(ON);
 
-        robot.leftIndex.setPosition(0);
-        robot.rightIndex.setPosition(1);
-        robot.belt.setPower(-1);
-        delay(0.85); // wait 1 seconds for shooting
+       // robot.leftIndex.setPosition(0);
+        //robot.rightIndex.setPosition(1);
+        //robot.belt.setPower(-1);
+        //delay(0.85); // wait 1 seconds for shooting
 
         // Stop all
 
         //spinning against
-        robot.leftIndex.setPosition(0.6);
-        robot.rightIndex.setPosition(0.4);
+        //robot.leftIndex.setPosition(0.6);
+        //robot.rightIndex.setPosition(0.4);
         // belt.setPower(-0.3);
 
-    }
+   // }
 
     // -------- Delay helper ----------
     private void delay(double t) {
