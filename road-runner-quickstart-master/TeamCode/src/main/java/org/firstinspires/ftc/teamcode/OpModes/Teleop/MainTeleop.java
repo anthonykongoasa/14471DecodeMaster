@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.git corobotcore.external.hardware.camera.BuiltinCameraDirection;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
@@ -101,10 +101,10 @@ public class MainTeleop extends OpMode {
             robot.driveFieldCentric(leftX, leftY, rightX, yaw);
         }
 
-        // ----------- Shooter control -----------
+        // ----------- Shooter (save voltage :(  ) -----------
         if (gamepad1.left_bumper) SHOOTER_VELOCITY = -1150;
-        if (gamepad1.right_bumper) SHOOTER_VELOCITY = -1300;
-        if (gamepad1.dpad_up) SHOOTER_VELOCITY = 0;
+        else if (gamepad1.right_bumper) SHOOTER_VELOCITY = -1300;
+        else SHOOTER_VELOCITY = 0;
 
         robot.leftShooter.setVelocity(SHOOTER_VELOCITY);
         robot.rightShooter.setVelocity(-SHOOTER_VELOCITY);
@@ -112,10 +112,21 @@ public class MainTeleop extends OpMode {
         // ----------- Intake / feeder -----------
         if (gamepad1.a) {
             robot.intake.setPower(-1);
+            robot.belt.setPower(-0.5);
         } else if (gamepad1.x) {
             robot.intake.setPower(1);
-        } else {
-            robot.intake.setPower(0);
+            robot.belt.setPower(0.5);
+        }
+        //shooter
+         if (gamepad1.b) {
+            robot.shoot(false);
+
+        }
+        else {
+            //robot.belt.setPower()
+             robot.leftHand.setPower(0.6);
+             robot.rightHand.setPower(0.4);
+             intake.setPower(-0.1);
         }
 
         // Reset IMU yaw
