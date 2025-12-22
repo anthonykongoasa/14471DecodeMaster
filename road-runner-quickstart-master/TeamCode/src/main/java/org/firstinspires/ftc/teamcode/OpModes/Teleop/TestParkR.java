@@ -13,9 +13,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
-@TeleOp(name = "TestBluePark", group = "Training")
-public class TestParkB extends OpMode {
+@TeleOp(name = "TestRedPark", group = "Training")
+public class TestParkR extends OpMode {
 
+    //use auto constructor (for now)
     BaseRobot14471 robot = new BaseRobot14471(
             true,
             new Pose2d(0, 0, 0)
@@ -57,16 +58,17 @@ public class TestParkB extends OpMode {
         /* ================= SNAP POSE ================= */
         if (gamepad1.dpad_up) {
             robot.drive.localizer.setPose(
-                    new Pose2d(67, 75, Math.toRadians(90))
+                    new Pose2d(67, -75, Math.toRadians(90))
             );
         }
 
         /* ================= START AUTO PARK ================= */
+        //need to tune
         if (gamepad1.dpad_down && parkAction == null) {
             parkAction = robot.drive
                     .actionBuilder(robot.drive.localizer.getPose())
                     .strafeToLinearHeading(
-                            new Vector2d(50, 35),
+                            new Vector2d(50, -35),
                             Math.toRadians(90)
                     )
                     .build();

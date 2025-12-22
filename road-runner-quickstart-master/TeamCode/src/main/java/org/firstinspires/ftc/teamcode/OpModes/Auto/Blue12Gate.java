@@ -60,7 +60,7 @@ public class Blue12Gate extends LinearOpMode {
                         //annoying sharp turn
                         .strafeToLinearHeading(new Vector2d(6, -26), Math.toRadians(-88), new TranslationalVelConstraint(100))
                         .strafeToLinearHeading(new Vector2d(6, -52), Math.toRadians(-88), new TranslationalVelConstraint(100))
-                        .waitSeconds(0.3)
+
                         .strafeToLinearHeading(new Vector2d(8, -50), Math.toRadians(180))
                         .strafeToLinearHeading(new Vector2d(8, -75), Math.toRadians(180), new TranslationalVelConstraint(100))
                         .build()
@@ -102,19 +102,19 @@ public class Blue12Gate extends LinearOpMode {
                         .build()
         );
 
-        robot.intake.setPower(-0.3);
+
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(54, -60, Math.toRadians(-90)))
                         .strafeToLinearHeading(shootPos, Math.toRadians(55), new TranslationalVelConstraint(100))
                         .build()
         );
-        robot.leftShooter.setVelocity(-NEARVEL-50);
-        robot.rightShooter.setVelocity(NEARVEL+50);
+        robot.leftShooter.setVelocity(-NEARVEL-25);
+        robot.rightShooter.setVelocity(NEARVEL+25);
         robot.shoot();
         delay(0.85);
         robot.stopShootingAuto();
 
-// Off-line final next to gate hoepfully
+// Off-line final next to gate
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(50)))
                         .strafeToLinearHeading(new Vector2d(15, -25), Math.toRadians(-90), new TranslationalVelConstraint(100))
