@@ -49,8 +49,8 @@ public class MainTeleop extends OpMode {
         // Set drive motors to run without encoders
         robot.leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.leftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Shooter motors run using encoders
         robot.leftShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
