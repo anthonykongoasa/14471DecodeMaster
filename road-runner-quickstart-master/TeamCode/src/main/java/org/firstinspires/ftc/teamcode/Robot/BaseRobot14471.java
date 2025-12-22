@@ -25,8 +25,8 @@ public class BaseRobot14471 {
     /* ACCURATELY (Self documenting) NAMED MOTORS/SERVOS */
     public DcMotor leftFront   = null;
     public DcMotor rightFront  = null;
-    public DcMotor leftRear    = null;
-    public DcMotor rightRear   = null;
+    public DcMotor leftBack    = null;
+    public DcMotor rightBack   = null;
     
     public DcMotorEx rightShooter    = null;
     public DcMotorEx leftShooter     = null;
@@ -65,22 +65,22 @@ public class BaseRobot14471 {
     
         leftFront   = hwMap.dcMotor.get("leftfront");
         rightFront  = hwMap.dcMotor.get("rightfront");
-        leftRear     = hwMap.dcMotor.get("leftrear");
-        rightRear    = hwMap.dcMotor.get("rightrear");
+        leftBack     = hwMap.dcMotor.get("leftrear");
+        rightBack    = hwMap.dcMotor.get("rightrear");
         leftFront.setDirection(DcMotor.Direction.FORWARD); 
         rightFront.setDirection(DcMotor.Direction.REVERSE);
-        leftRear.setDirection(DcMotor.Direction.FORWARD); 
-        rightRear.setDirection(DcMotor.Direction.REVERSE);
+        leftBack.setDirection(DcMotor.Direction.FORWARD);
+        rightBack.setDirection(DcMotor.Direction.REVERSE);
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);
-        leftRear.setPower(0);
-        rightRear.setPower(0);
+        leftBack.setPower(0);
+        rightBack.setPower(0);
       
         leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
          // IMU  
         imu = hwMap.get(IMU.class, "imu");
@@ -147,9 +147,9 @@ public class BaseRobot14471 {
         double v4 = velocity * Math.sin(diffTheta + Math.PI/4) + rotpow; // rightrear
             
         leftFront.setPower(v1);
-        leftRear.setPower(v3);
+        leftBack.setPower(v3);
         rightFront.setPower(v2);
-        rightRear.setPower(v4);
+        rightBack.setPower(v4);
         
     }
     /* -------- Shooter / Intake Control -------- */
