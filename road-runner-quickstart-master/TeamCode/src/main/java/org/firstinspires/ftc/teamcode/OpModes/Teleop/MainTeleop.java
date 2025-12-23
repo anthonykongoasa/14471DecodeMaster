@@ -129,34 +129,44 @@ public class MainTeleop extends OpMode {
         if (bNow && !bPrev &&
                 targetVel > 0 &&
                 leftVel  >= targetVel - 50 &&
-                rightVel >= targetVel - 50) {
+                Math.abs(rightVel) >= targetVel - 50) {
 
             shooting = true;
         }
+        //intake w/ bumpers    
+        double intakePower = -(gamepad1.rightTrigger-gamepad1.leftTrigger);
+        robot.belt.setPower(intakePower);
+        robot.intake.setPower(intakePower);
 
-// Stop shooting if A or X pressed
-        if (gamepad1.a || gamepad1.x) {
+// Stop shooting if A or triggers not being used 
+        if (gamepad1.a || Math.abs(intakePower)<0.05) {
             shooting = false;
         }
 
         bPrev = bNow;
 
+        
+
 // ----------- Execute state -----------
+        // may need to swap > / < logic
         if (shooting) {
             robot.shoot();
         }
-        else if (gamepad1.a) {
+        else if (intakePower > 0.05) {
             robot.reverseIndexers();
-            robot.intake.setPower(-1);
-            robot.belt.setPower(-1);
+            
         }
-        else if (gamepad1.x) {
+        else if (intakePower < -0.05) {
             robot.reverseEverything();
         }
         else {
+            if (!gamepad1.a && !gamepad1.x && Math.abs(intakePower) < 0.05) { //second safeguard
             robot.stopShooting();
             robot.reverseIndexers();
+            }
         }
+
+        
 
         // Reset IMU yaw
         if (gamepad1.y) robot.imu.resetYaw();
