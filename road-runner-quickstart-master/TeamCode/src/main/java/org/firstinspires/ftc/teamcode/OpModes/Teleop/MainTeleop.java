@@ -24,6 +24,7 @@ public class MainTeleop extends OpMode {
     private double SPEED_CONTROL = 1;
 
     // Camera & vision
+    private boolean shooterReadyPrev = false;
     private static final boolean USE_WEBCAM = true;
     private static final int DESIRED_TAG_ID = -1;
     private VisionPortal visionPortal;
@@ -120,26 +121,31 @@ public class MainTeleop extends OpMode {
             targetVel = 1350;
             robot.spinUpShooter(targetVel);
         }
-
-// ----------- Toggle shooting -----------
-        boolean bNow = gamepad1.b;
-
-
-
-        if (bNow && !bPrev &&
-                targetVel > 0 &&
-                leftVel  >= targetVel - 50 &&
-                Math.abs(rightVel) >= targetVel - 50) {
-
-            shooting = true;
-        }
-        //intake w/ bumpers    
         double intakePower = -(gamepad1.right_trigger-gamepad1.left_trigger);
         robot.belt.setPower(intakePower);
         robot.intake.setPower(intakePower);
 
+// ----------- Toggle shooting -----------
+        boolean bNow = gamepad1.b;
+        boolean shooterReady = targetVel > 0 &&
+                leftVel  >= targetVel - 50 &&
+                Math.abs(rightVel) >= targetVel - 50 && Math.abs(intakePower)< 0.05;
+
+        if (shooterReady && !shooterReadyPrev) {
+            gamepad1.rumble(500); // 200 ms short buzz
+        }
+
+        shooterReadyPrev = shooterReady;
+
+        if (shooterReady && bNow && !bPrev) {
+            shooting = true;
+
+        }
+        //intake w/ bumpers    
+
+
 // Stop shooting if x or triggers not being used
-        if (gamepad1.x || Math.abs(intakePower)<0.05) {
+        if (gamepad1.x || Math.abs(intakePower)>0.05) {
             shooting = false;
         }
 
@@ -150,6 +156,7 @@ public class MainTeleop extends OpMode {
 // ----------- Execute state -----------
         // may need to swap > / < logic
         if (shooting) {
+
             robot.shoot();
         }
         else if (intakePower > 0.05) {
