@@ -162,8 +162,8 @@ public class BaseRobot14471 {
     public void reverseEverything() {
         leftIndex.setPosition(1);
         rightIndex.setPosition(0);
-        intake.setPower(0.5);
-        belt.setPower(0.5);
+        //intake.setPower(0.5);
+        //belt.setPower(0.5);
     }
 
     public void reverseIndexers() {
