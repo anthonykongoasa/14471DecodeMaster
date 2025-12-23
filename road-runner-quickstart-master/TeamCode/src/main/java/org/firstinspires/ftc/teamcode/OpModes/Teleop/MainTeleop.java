@@ -134,7 +134,7 @@ public class MainTeleop extends OpMode {
             shooting = true;
         }
         //intake w/ bumpers    
-        double intakePower = -(gamepad1.rightTrigger-gamepad1.leftTrigger);
+        double intakePower = -(gamepad1.right_trigger-gamepad1.left_trigger);
         robot.belt.setPower(intakePower);
         robot.intake.setPower(intakePower);
 
