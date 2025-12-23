@@ -138,8 +138,8 @@ public class MainTeleop extends OpMode {
         robot.belt.setPower(intakePower);
         robot.intake.setPower(intakePower);
 
-// Stop shooting if A or triggers not being used 
-        if (gamepad1.a || Math.abs(intakePower)<0.05) {
+// Stop shooting if x or triggers not being used
+        if (gamepad1.x || Math.abs(intakePower)<0.05) {
             shooting = false;
         }
 
@@ -160,7 +160,7 @@ public class MainTeleop extends OpMode {
             robot.reverseEverything();
         }
         else {
-            if (!gamepad1.a && !gamepad1.x && Math.abs(intakePower) < 0.05) { //second safeguard
+            if (!gamepad1.x &&  Math.abs(intakePower) < 0.05) { //second safeguard
             robot.stopShooting();
             robot.reverseIndexers();
             }
@@ -168,10 +168,11 @@ public class MainTeleop extends OpMode {
 
         
 
-        // Reset IMU yaw
+        // Resety yaw
         if (gamepad1.y) robot.imu.resetYaw();
 
         // Telemetry
+        telemetry.addData("intakePower", intakePower);
         telemetry.addData("left shooter Velocity", leftVel);
         telemetry.addData("right shooter Velocity", rightVel);
         telemetry.addData("target velocity", targetVel);
