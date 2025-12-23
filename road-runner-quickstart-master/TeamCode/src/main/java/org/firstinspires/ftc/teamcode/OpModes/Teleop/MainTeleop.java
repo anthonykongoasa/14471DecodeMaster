@@ -144,7 +144,7 @@ public class MainTeleop extends OpMode {
         //intake w/ bumpers    
 
 
-// Stop shooting if x or triggers not being used
+// Stop shooting if x or triggers  being used
         if (gamepad1.x || Math.abs(intakePower)>0.05) {
             shooting = false;
         }
