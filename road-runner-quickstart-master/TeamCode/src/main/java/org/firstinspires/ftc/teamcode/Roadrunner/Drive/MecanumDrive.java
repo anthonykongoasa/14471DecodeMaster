@@ -374,6 +374,25 @@ public final class MecanumDrive {
         }
     }
 
+    public void driveFieldCentric(double gamepadXPow, double gamepadYPow, double gamepadRotPow, double robotHeading){
+
+        double gamepadTheta = Math.atan2(gamepadYPow, gamepadXPow) - Math.PI/2;
+        double velocity = Math.sqrt(Math.pow(gamepadXPow, 2) + Math.pow(gamepadYPow, 2));
+        double diffTheta = gamepadTheta + Math.toRadians(robotHeading);
+        double rotpow = gamepadRotPow;
+
+        double v1= velocity * Math.sin(diffTheta + Math.PI/4) - rotpow; // leftfront
+        double v2 = velocity * Math.cos(diffTheta + Math.PI/4) + rotpow; // rightfront
+        double v3 = velocity * Math.cos(diffTheta + Math.PI/4) - rotpow; // leftrear
+        double v4 = velocity * Math.sin(diffTheta + Math.PI/4) + rotpow; // rightrear
+
+        leftFront.setPower(v1);
+        leftBack.setPower(v3);
+        rightFront.setPower(v2);
+        rightBack.setPower(v4);
+
+    }
+
     public final class TurnAction implements Action {
         private final TimeTurn turn;
 

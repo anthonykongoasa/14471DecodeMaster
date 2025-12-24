@@ -16,10 +16,7 @@ import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 @TeleOp(name = "TestBluePark", group = "Training")
 public class TestParkB extends OpMode {
 
-    BaseRobot14471 robot = new BaseRobot14471(
-            true,
-            new Pose2d(0, 0, 0)
-    );
+    BaseRobot14471 robot = new BaseRobot14471(true, new Pose2d(0, 0, 0));
 
     private Action parkAction = null;
 
