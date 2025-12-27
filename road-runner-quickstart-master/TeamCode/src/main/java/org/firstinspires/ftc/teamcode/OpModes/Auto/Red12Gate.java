@@ -98,7 +98,7 @@ public class Red12Gate extends LinearOpMode {
 
         robot.shoot();
         delay(0.85);
-        robot.stopShootingAuto();robot.shoot();
+        robot.stopShootingAuto();
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(82, 12, Math.toRadians(-46)))
