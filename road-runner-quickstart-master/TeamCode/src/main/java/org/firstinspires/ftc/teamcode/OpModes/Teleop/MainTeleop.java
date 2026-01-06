@@ -103,7 +103,7 @@ public class MainTeleop extends OpMode {
 
         } else {
             // Manual field-centric control
-            double leftY = -gamepad1.left_stick_y * SPEED_CONTROL;
+            double leftY = gamepad1.left_stick_y * SPEED_CONTROL;
             double leftX = gamepad1.left_stick_x * SPEED_CONTROL;
             double rightX = gamepad1.right_stick_x * SPEED_CONTROL;
 
@@ -128,8 +128,8 @@ public class MainTeleop extends OpMode {
 // ----------- Toggle shooting -----------
         boolean bNow = gamepad1.b;
         boolean shooterReady = targetVel > 0 &&
-                leftVel  >= targetVel - 50 &&
-                Math.abs(rightVel) >= targetVel - 50 && Math.abs(intakePower)< 0.05;
+                rightVel  >= targetVel - 50 &&
+                Math.abs(leftVel) >= targetVel - 50 && Math.abs(intakePower)< 0.05;
 
         if (shooterReady && !shooterReadyPrev) {
             gamepad1.rumble(500); // 200 ms short buzz

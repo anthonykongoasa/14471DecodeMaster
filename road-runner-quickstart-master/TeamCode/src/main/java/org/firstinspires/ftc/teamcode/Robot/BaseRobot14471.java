@@ -90,7 +90,7 @@ public class BaseRobot14471 {
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
         RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
-        // Initialize  IMU
+        // Initialilze  IMU
         RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
         imu.initialize(new IMU.Parameters(orientationOnRobot));
         }
@@ -155,8 +155,8 @@ public class BaseRobot14471 {
     /* -------- Shooter / Intake Control -------- */
 
     public void spinUpShooter(double velocity) {
-        leftShooter.setVelocity(velocity);
-        rightShooter.setVelocity(-velocity);
+        leftShooter.setVelocity(-velocity);
+        rightShooter.setVelocity(velocity);
     }
 
     public void reverseEverything() {
