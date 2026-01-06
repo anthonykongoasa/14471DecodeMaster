@@ -112,7 +112,7 @@ public class BaseRobot14471 {
 
     }
     public void initPIDF() {
-        PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.5); //still need to tune F :(
+        PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.7); //still need to tune F :(
         leftShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
         rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
     }
