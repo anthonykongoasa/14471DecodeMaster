@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
 import java.util.List;
 
-@TeleOp(name="Main_Teleop_Code", group="Training")
+@TeleOp(name="Teleop", group="Training")
 public class MainTeleop extends OpMode {
 
     BaseRobot14471 robot = new BaseRobot14471(false);  // TeleOp robot
@@ -82,7 +82,7 @@ public class MainTeleop extends OpMode {
             }
         }
 
-        // ----------- Drive logic -----------
+        // ----------- Drive logic ----------- NEED TO FIX
         if (gamepad1.dpad_left && desiredTag != null) {
             // Auto-drive to tag
             double rangeError = desiredTag.ftcPose.range - 75; // target distance
@@ -122,8 +122,9 @@ public class MainTeleop extends OpMode {
             robot.spinUpShooter(targetVel);
         }
         double intakePower = -(gamepad1.right_trigger-gamepad1.left_trigger);
-        robot.belt.setPower(intakePower);
-        robot.intake.setPower(intakePower);
+        //added limits to intake, belt powers
+        robot.belt.setPower(intakePower *0.85);
+        robot.intake.setPower(intakePower * 0.85);
 
 // ----------- Toggle shooting -----------
         boolean bNow = gamepad1.b;
@@ -132,7 +133,7 @@ public class MainTeleop extends OpMode {
                 Math.abs(leftVel) >= targetVel - 50 && Math.abs(intakePower)< 0.05;
 
         if (shooterReady && !shooterReadyPrev) {
-            gamepad1.rumble(500); // 200 ms short buzz
+            gamepad1.rumble(1000); // 200 ms short buzz
         }
 
         shooterReadyPrev = shooterReady;

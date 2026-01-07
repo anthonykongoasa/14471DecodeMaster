@@ -172,22 +172,22 @@ public class BaseRobot14471 {
     }
 
     public void shoot() {
-        intake.setPower(-1);
-        belt.setPower(-1);
+        intake.setPower(-0.8);
+        belt.setPower(-0.8);
         leftIndex.setPosition(INDEX_FIRE_L);
         rightIndex.setPosition(INDEX_FIRE_R);
     }
 
     public void stopShooting() {
         intake.setPower(-0.1);
-        belt.setPower(-0.5);
+        belt.setPower(-0.3);
         leftShooter.setVelocity(0);
         rightShooter.setVelocity(0);
 
     }
     public void stopShootingAuto() {
-        intake.setPower(-1);
-        belt.setPower(-0.5);
+        intake.setPower(-0.8);
+        belt.setPower(-0.3);
         leftIndex.setPosition(INDEX_REVERSE_L);
         rightIndex.setPosition(INDEX_REVERSE_R);
     }
