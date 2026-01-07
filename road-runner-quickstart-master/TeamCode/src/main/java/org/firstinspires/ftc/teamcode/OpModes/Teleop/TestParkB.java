@@ -25,10 +25,10 @@ public class TestParkB extends OpMode {
         robot.init(hardwareMap);
 
         // Drive motors (manual control)
-        robot.leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.leftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.drive.leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.drive.rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.drive.leftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.drive.rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         telemetry.addLine("Ready");
         telemetry.update();
@@ -38,15 +38,15 @@ public class TestParkB extends OpMode {
     public void loop() {
 
         /* ================= MANUAL DRIVE ================= */
-        double y = -gamepad1.left_stick_y;
+        double y = gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
 
-        double yaw = robot.imu
+        double yaw = robot.drive.lazyImu.get()
                 .getRobotYawPitchRollAngles()
                 .getYaw();
 
-        robot.driveFieldCentric(x, y, rx, yaw);
+        robot.drive.driveFieldCentric(x, y, rx, yaw);
 
         /* ================= RR POSE UPDATE ================= */
         robot.drive.updatePoseEstimate();
@@ -82,6 +82,10 @@ public class TestParkB extends OpMode {
         /* ================= CANCEL AUTO IF DRIVER MOVES ================= */
         if (Math.abs(x) > 0.05 || Math.abs(y) > 0.05 || Math.abs(rx) > 0.05) {
             parkAction = null;
+        }
+
+        if (gamepad1.y) {
+            robot.drive.lazyImu.get().resetYaw();
         }
 
         /* ================= TELEMETRY ================= */
