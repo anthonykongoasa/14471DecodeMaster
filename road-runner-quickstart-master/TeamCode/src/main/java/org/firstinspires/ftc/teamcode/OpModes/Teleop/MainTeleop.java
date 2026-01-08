@@ -168,8 +168,7 @@ public class MainTeleop extends OpMode {
             robot.reverseEverything();
         }
         else {
-            if (!gamepad1.x &&  Math.abs(intakePower) < 0.05
-                    && !gamepad1.left_bumper && !gamepad1.right_bumper) { //second safeguard
+            if (!gamepad1.left_bumper && !gamepad1.right_bumper) { //second safeguard
             robot.stopShooting();
             robot.reverseIndexers();
             targetVel = 0;
