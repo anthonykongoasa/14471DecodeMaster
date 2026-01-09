@@ -21,7 +21,7 @@ public class TwoDriverTele extends OpMode {
 
     BaseRobot14471 robot = new BaseRobot14471(false);  // TeleOp robot
 
-    private double SPEED_CONTROL = 1;
+
 
     // Camera & vision
     private boolean shooterReadyPrev = false;
@@ -83,7 +83,7 @@ public class TwoDriverTele extends OpMode {
         }
 
         // ----------- Drive logic ----------- NEED TO FIX
-        if (gamepad1.dpad_left && desiredTag != null) {
+        if (gamepad2.dpad_left && desiredTag != null) {
             // Auto-drive to tag
             double rangeError = desiredTag.ftcPose.range - 75; // target distance
             double headingError = desiredTag.ftcPose.bearing - 0; // target heading
@@ -103,9 +103,9 @@ public class TwoDriverTele extends OpMode {
 
         } else {
             // Manual field-centric control
-            double leftY = gamepad1.left_stick_y * SPEED_CONTROL;
-            double leftX = gamepad1.left_stick_x * SPEED_CONTROL;
-            double rightX = gamepad1.right_stick_x * SPEED_CONTROL;
+            double leftY = gamepad1.left_stick_y;
+            double leftX = gamepad1.left_stick_x;
+            double rightX = gamepad1.right_stick_x;
 
             double yaw = robot.imu.getRobotYawPitchRollAngles().getYaw();
             robot.driveFieldCentric(leftX, leftY, rightX, yaw);
@@ -130,7 +130,7 @@ public class TwoDriverTele extends OpMode {
         boolean bNow = gamepad1.b || gamepad2.b;
         boolean shooterReady = targetVel > 0 &&
                 rightVel  >= targetVel - 50 &&
-                Math.abs(leftVel) >= targetVel - 50 && Math.abs(intakePower)< 0.05;
+                Math.abs(leftVel) >= targetVel - 50;// && Math.abs(intakePower)< 0.05
 
         if (shooterReady && !shooterReadyPrev) {
             gamepad1.rumble(1000); // 200 ms short buzz
@@ -153,21 +153,30 @@ public class TwoDriverTele extends OpMode {
 
         bPrev = bNow;
 
-        
+        if (intakePower < 0.05 && intakePower > 0.05 && !shooting ) {
+            //little intake spinning
+            robot.intake.setPower(-.2);
+            robot.belt.setPower(-.5);
+        }
+        if (shooterReady && !shooting && intakePower < 0.05 && intakePower > 0.05) {
+            robot.intake.setPower(-.2);
+            robot.belt.setPower(-.5);
+
+        }
 
 // ----------- Execute state -----------
         if (shooting) {
             robot.shoot();
         }
         else if (intakePower > 0.05) {
-            robot.reverseIndexers();
+            robot.reverseEverything();
             
         }
         else if (intakePower < -0.05) {
-            robot.reverseEverything();
+            robot.reverseIndexers();
         }
         else {
-            if (!gamepad2.left_bumper && !gamepad2.right_bumper)) { //second safeguard
+            if (!gamepad2.left_bumper && !gamepad2.right_bumper) { //second safeguard
             robot.stopShooting();
             robot.reverseIndexers();
             targetVel = 0;

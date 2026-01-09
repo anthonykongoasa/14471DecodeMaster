@@ -146,7 +146,7 @@ public class MainTeleop extends OpMode {
 
 
 // Stop shooting if x or triggers  being used
-        if (gamepad1.x || Math.abs(intakePower)>0.05) {
+        if ( gamepad1.x || Math.abs(intakePower)>0.05) {
             shooting = false;
         }
 
@@ -155,17 +155,17 @@ public class MainTeleop extends OpMode {
         
 
 // ----------- Execute state -----------
-        // may need to swap > / < logic
+
         if (shooting) {
 
             robot.shoot();
         }
         else if (intakePower > 0.05) {
-            robot.reverseIndexers();
+            robot.reverseEverything();
             
         }
         else if (intakePower < -0.05) {
-            robot.reverseEverything();
+            robot.reverseIndexers();
         }
         else {
             if (!gamepad1.left_bumper && !gamepad1.right_bumper) { //second safeguard

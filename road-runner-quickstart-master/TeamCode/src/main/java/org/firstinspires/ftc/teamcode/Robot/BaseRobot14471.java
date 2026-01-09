@@ -112,7 +112,7 @@ public class BaseRobot14471 {
 
     }
     public void initPIDF() {
-        PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.7); //still need to tune F :(
+        PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.85); //still need to tune F :(
         leftShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
         rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
     }
@@ -179,8 +179,8 @@ public class BaseRobot14471 {
     }
 
     public void stopShooting() {
-        intake.setPower(-0.1);
-        belt.setPower(-0.3);
+        intake.setPower(-0.3);
+        belt.setPower(-0.5);
         leftShooter.setVelocity(0);
         rightShooter.setVelocity(0);
 
