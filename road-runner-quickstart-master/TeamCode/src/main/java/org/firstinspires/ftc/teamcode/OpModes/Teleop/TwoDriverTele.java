@@ -113,6 +113,8 @@ public class TwoDriverTele extends OpMode {
 
         double leftVel = robot.leftShooter.getVelocity();
         double rightVel = robot.rightShooter.getVelocity();
+
+        // Shooter spin-up with bumpers
         if (gamepad2.left_bumper) {
             targetVel = 1150;
             robot.spinUpShooter(targetVel);
@@ -121,66 +123,49 @@ public class TwoDriverTele extends OpMode {
             targetVel = 1350;
             robot.spinUpShooter(targetVel);
         }
-        double intakePower = -(gamepad1.right_trigger-gamepad1.left_trigger);
-        //added limits to intake, belt powers
-        robot.belt.setPower(intakePower *0.85);
-        robot.intake.setPower(intakePower * 0.85);
 
-// ----------- Toggle shooting -----------
-        boolean bNow = gamepad1.b || gamepad2.b;
+        // Intake control from triggers
+        double intakePower = -(gamepad1.right_trigger - gamepad1.left_trigger);
+        boolean manualIntakeActive = Math.abs(intakePower) > 0.15;
+
+        // Shooter readiness (intake does NOT block it)
         boolean shooterReady = targetVel > 0 &&
-                rightVel  >= targetVel - 50 &&
-                Math.abs(leftVel) >= targetVel - 50;// && Math.abs(intakePower)< 0.05
+            Math.abs(leftVel)  >= targetVel - 50 &&
+            Math.abs(rightVel) >= targetVel - 50;
 
+        // Rumble once when shooter becomes ready
         if (shooterReady && !shooterReadyPrev) {
-            gamepad1.rumble(1000); // 200 ms short buzz
-            gamepad2.rumble(1000); // 200 ms short buzz
+            gamepad1.rumble(1000);
+            gamepad2.rumble(1000);
         }
-
         shooterReadyPrev = shooterReady;
 
+        // Shooting toggle (press B to shoot)
+        boolean bNow = gamepad1.b || gamepad2.b;
         if (shooterReady && bNow && !bPrev) {
             shooting = true;
-
         }
-        //intake w/ bumpers    
 
-
-// Stop shooting if x or triggers  being used
-        if (gamepad2.x || Math.abs(intakePower)>0.05) {
+        // Cancel shooting manually (X button or manual intake)
+        if (gamepad2.x || manualIntakeActive) {
             shooting = false;
         }
-
         bPrev = bNow;
 
-        if (intakePower < 0.05 && intakePower > 0.05 && !shooting ) {
-            //little intake spinning
-            robot.intake.setPower(-.2);
-            robot.belt.setPower(-.5);
-        }
-        if (shooterReady && !shooting && intakePower < 0.05 && intakePower > 0.05) {
-            robot.intake.setPower(-.2);
-            robot.belt.setPower(-.5);
+        // ---------------- EXECUTE STATE ----------------
 
-        }
-
-// ----------- Execute state -----------
+        // Intake / Shooter output
         if (shooting) {
-            robot.shoot();
+            robot.shoot(); // full shooter + intake -0.8
         }
-        else if (intakePower > 0.05) {
-            robot.reverseEverything();
-            
-        }
-        else if (intakePower < -0.05) {
+        else if (manualIntakeActive) {
+            robot.intake.setPower(intakePower * 0.85);
+            robot.belt.setPower(intakePower * 0.85);
             robot.reverseIndexers();
         }
         else {
-            if (!gamepad2.left_bumper && !gamepad2.right_bumper) { //second safeguard
-            robot.stopShooting();
+            robot.stopShooting(); // idle: intake -0.3, belt -0.5
             robot.reverseIndexers();
-            targetVel = 0;
-            }
         }
 
         
