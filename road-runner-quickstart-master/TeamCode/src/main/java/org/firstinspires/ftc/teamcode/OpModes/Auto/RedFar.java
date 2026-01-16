@@ -12,8 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
 @Autonomous(name = "RedFar")
-public class Red
-        Far extends LinearOpMode {
+public class RedFar extends LinearOpMode {
 
     Pose2d startPose = new Pose2d(61, -16, Math.toRadians(-180));
     //AUTO robot constructor
@@ -68,7 +67,7 @@ public class Red
         // shoot 3
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(40,- 50, Math.toRadians(-90)))
+                robot.drive.actionBuilder(new Pose2d(80, -50, Math.toRadians(-90)))
                         .strafeToLinearHeading(shootPos, Math.toRadians(-195))
                         .build()
         );
@@ -79,10 +78,10 @@ public class Red
         //------------------------------intake POSITION #2---------------- (HP ZONE)
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
-                        //annoying sharp turn
-                        .strafeToLinearHeading(new Vector2d (55, 35), Math.toRadians(90), new TranslationalVelConstraint(60) )
-                        .strafeToLinearHeading(new Vector2d (50, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
-                        .strafeToLinearHeading(new Vector2d (48, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
+                        
+                        .strafeToLinearHeading(new Vector2d (65, 35), Math.toRadians(90), new TranslationalVelConstraint(60) )
+                        .strafeToLinearHeading(new Vector2d (63, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d (65, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
 
 
                         .build()
