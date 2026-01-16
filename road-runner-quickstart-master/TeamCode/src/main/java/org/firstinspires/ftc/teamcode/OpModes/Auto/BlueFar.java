@@ -41,47 +41,24 @@ public class BlueFar extends LinearOpMode {
         robot.rightShooter.setVelocity(FARVEL);
 
         Vector2d shootPos = new Vector2d(66, -16);
+        Pose2d shootPose2d  = new Pose2d(66, -16, Math.toRadians(195);
 
-
+        
         Actions.runBlocking(
                 robot.drive.actionBuilder(startPose)
 
-                        // Shoot #1
+                        // SHOOT #1
                         .strafeToLinearHeading(shootPos, Math.toRadians(195), new TranslationalVelConstraint(60))
                         .build()
         );
-        delay(0.2);
+        delay(0.2); // wait for shooter to get warmed up
         robot.shoot();
         delay(0.85);
         robot.stopShootingAuto();
 
-        //------------------------------intake POSITION #1----------------
+        //intake 2 (motif)
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(66, -16, Math.toRadians(195)))
-                        //annoying sharp turn
-                        .strafeToLinearHeading(new Vector2d (55, 35), Math.toRadians(90), new TranslationalVelConstraint(60) )
-                        .strafeToLinearHeading(new Vector2d (50, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
-                        .strafeToLinearHeading(new Vector2d (48, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
-
-
-                        .build()
-        );
-        robot.intake.setPower(-0.1);
-        Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(45, 35, Math.toRadians(90)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(195))
-                        .build()
-        )
-
-        // ------------shoot #2-------------
-
-
-        robot.shoot();
-        delay(0.85);
-        robot.stopShootingAuto();
-        //intake 2
-        Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(66, -16, Math.toRadians(195)))
+                robot.drive.actionBuilder(shootPose2d)
                         .strafeToLinearHeading(new Vector2d(80, 50), Math.toRadians(90), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(new Vector2d(80, 30), Math.toRadians(90), new TranslationalVelConstraint(60))
 
@@ -98,11 +75,36 @@ public class BlueFar extends LinearOpMode {
         robot.shoot();
         delay(0.85);
         robot.stopShootingAuto();
-        //intake 3
+        //------------------------------intake POSITION #2---------------- (HP ZONE)
+        Actions.runBlocking(
+                robot.drive.actionBuilder(shootPose2d)
+                        //annoying sharp turn
+                        .strafeToLinearHeading(new Vector2d (55, 35), Math.toRadians(90), new TranslationalVelConstraint(60) )
+                        .strafeToLinearHeading(new Vector2d (50, 25), Math.toRadians(90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d (48, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
+
+
+                        .build()
+        );
+        robot.intake.setPower(-0.1);
+        Actions.runBlocking(
+                robot.drive.actionBuilder(new Pose2d(48, 35, Math.toRadians(90)))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(195))
+                        .build()
+        )
+
+        // ------------shoot #2-------------
+
+
+        robot.shoot();
+        delay(0.85);
+        robot.stopShootingAuto();
+        
+        //intake 3 (HP ZONE AGAIN)
 
 
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(66, -16, Math.toRadians(195)))
+                robot.drive.actionBuilder(shootPose2d))
                         .strafeToLinearHeading(new Vector2d(60, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(new Vector2d(63, 25), Math.toRadians(90), new TranslationalVelConstraint(60))
                         .strafeToLinearHeading(new Vector2d(60, 30), Math.toRadians(90), new TranslationalVelConstraint(70))
@@ -121,7 +123,7 @@ public class BlueFar extends LinearOpMode {
 
 
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(66, -16, Math.toRadians(195)))
+                robot.drive.actionBuilder(shootPose2d))
                         .strafeToLinearHeading(new Vector2d(60, 35), Math.toRadians(90), new TranslationalVelConstraint(70))
 
                         .build()
