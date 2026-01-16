@@ -41,13 +41,13 @@ public class Blue12 extends LinearOpMode {
         robot.rightShooter.setVelocity(NEARVEL);
 
         Vector2d shootPos = new Vector2d(-20, -16);
-
+    
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(startPose)
 
                         // Shoot #1
-                        .strafeToLinearHeading(shootPos, Math.toRadians(53), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(53), new TranslationalVelConstraint(60))
                         .build()
         );
         robot.shoot();
@@ -58,15 +58,15 @@ public class Blue12 extends LinearOpMode {
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(47)))
                         //annoying sharp turn
-                        .strafeToLinearHeading(new Vector2d(6, -26), Math.toRadians(-88), new TranslationalVelConstraint(100))
-                        .strafeToLinearHeading(new Vector2d(6, -52), Math.toRadians(-88), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(new Vector2d(3, -30), Math.toRadians(-88), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d(3, -52), Math.toRadians(-88), new TranslationalVelConstraint(70))
                         .build()
         );
        robot.intake.setPower(-0.1);
         // ------------shoot #2-------------
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(6, -52, Math.toRadians(-88)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(50), new TranslationalVelConstraint(100))
+                robot.drive.actionBuilder(new Pose2d(3  , -52, Math.toRadians(-88)))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(50), new TranslationalVelConstraint(60))
                         .build()
         );
 
@@ -76,15 +76,15 @@ public class Blue12 extends LinearOpMode {
         //intake 2
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(50)))
-                        .strafeToLinearHeading(new Vector2d(36, -20), Math.toRadians(-90), new TranslationalVelConstraint(100))
-                        .strafeToLinearHeading(new Vector2d(36, -60), Math.toRadians(-90), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(new Vector2d(36, -20), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d(36, -60), Math.toRadians(-90), new TranslationalVelConstraint(60))
                                                .build()
         );
         // shoot 3
        robot.intake.setPower(-0.1);
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(36, -60, Math.toRadians(-90)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(50), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(50), new TranslationalVelConstraint(70))
                         .build()
         );
 
@@ -94,15 +94,15 @@ public class Blue12 extends LinearOpMode {
         //intake 3
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(60)))
-                        .strafeToLinearHeading(new Vector2d(54, -20), Math.toRadians(-90), new TranslationalVelConstraint(100))
-                        .strafeToLinearHeading(new Vector2d(54, -60), Math.toRadians(-90), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(new Vector2d(54, -20), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d(54, -60), Math.toRadians(-90), new TranslationalVelConstraint(60))
                         .build()
         );
 
        robot.intake.setPower(-0.3);
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(54, -60, Math.toRadians(-90)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(55), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(55), new TranslationalVelConstraint(70))
                         .build()
         );
         robot.leftShooter.setVelocity(-NEARVEL-25);
@@ -114,7 +114,7 @@ public class Blue12 extends LinearOpMode {
 // Off-line final next to gate hoepfully
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(-20, -16, Math.toRadians(50)))
-                        .strafeToLinearHeading(new Vector2d(15, -25), Math.toRadians(-90), new TranslationalVelConstraint(100))
+                        .strafeToLinearHeading(new Vector2d(15, -25), Math.toRadians(-90), new TranslationalVelConstraint(70))
                         .build()
         );
 

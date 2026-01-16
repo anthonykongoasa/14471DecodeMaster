@@ -16,7 +16,7 @@ public class Red12 extends LinearOpMode {
     double ON = -1;
     double OFF = 0;
     double IN = 0.15;
-    double NEARVEL = 1110; //(tune)
+    double NEARVEL = 1130; //(tune)
 
     //PID
     Pose2d startPose = new Pose2d(52, 48, Math.toRadians(-55));
