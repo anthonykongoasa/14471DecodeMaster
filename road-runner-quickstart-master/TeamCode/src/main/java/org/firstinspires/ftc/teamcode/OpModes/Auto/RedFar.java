@@ -19,11 +19,6 @@ public class RedFar extends LinearOpMode {
     BaseRobot14471 robot = new BaseRobot14471(true, startPose);
     ElapsedTime runtime = new ElapsedTime();
 
-
-    double ON = -1;
-    double OFF = 0;
-    double IN = 0.15;
-    double NEARVEL = 1110; //(tune)
     double FARVEL = 1300;
 
     @Override
@@ -56,10 +51,10 @@ public class RedFar extends LinearOpMode {
         delay(0.85);
         robot.stopShootingAuto();
 
-        //intake 2 (motif)
+        //intake 1 (motif)
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
-                        .strafeToLinearHeading(new Vector2d(95, -20), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d(95, -25), Math.toRadians(-90), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(new Vector2d(95, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
 
                         .build()
@@ -67,7 +62,7 @@ public class RedFar extends LinearOpMode {
         // shoot 3
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(95, -50, Math.toRadians(-90)))
+                robot.drive.actionBuilder(new Pose2d(95, -45, Math.toRadians(-90)))
                         .strafeToLinearHeading(shootPos, Math.toRadians(-200))
                         .build()
         );
@@ -80,8 +75,8 @@ public class RedFar extends LinearOpMode {
                 robot.drive.actionBuilder(shootPose2d)
                         
                         .strafeToLinearHeading(new Vector2d (67, -45), Math.toRadians(-90), new TranslationalVelConstraint(60) )
-                        .strafeToLinearHeading(new Vector2d (65, -35), Math.toRadians(-90), new TranslationalVelConstraint(70))
-                        .strafeToLinearHeading(new Vector2d (67, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d (65, -37), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d (69, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
 
 
                         .build()
@@ -89,7 +84,7 @@ public class RedFar extends LinearOpMode {
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(67, -45, Math.toRadians(-90)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(200))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(-200))
                         .build()
         );
 
@@ -100,29 +95,30 @@ public class RedFar extends LinearOpMode {
         delay(0.85);
         robot.stopShootingAuto();
         
-        //intake 3 (HP ZONE AGAIN)
-
+        //intake 3 (HP ZONE X2)
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
                         .strafeToLinearHeading(new Vector2d(67, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(new Vector2d(65, -37), Math.toRadians(-90), new TranslationalVelConstraint(60))
-                        .strafeToLinearHeading(new Vector2d(67, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
+                        .strafeToLinearHeading(new Vector2d(69, -45), Math.toRadians(-90), new TranslationalVelConstraint(70))
 
 
                         .build()
         );
+        //shoot #4
+        robot.intake.setPower(-0.1);
         Actions.runBlocking(
                 robot.drive.actionBuilder(new Pose2d(67, -45, Math.toRadians(-90)))
-                        .strafeToLinearHeading(shootPos, Math.toRadians(195))
+                        .strafeToLinearHeading(shootPos, Math.toRadians(-200))
                         .build()
         );
         robot.shoot();
         delay(0.85);
-        robot.stopShooting(); // turn off shotoer motors
+        robot.stopShooting(); // turn off shooter motors
 
 
-        Actions.runBlocking( // off line
+        Actions.runBlocking( // off line, setup for tele
                 robot.drive.actionBuilder(shootPose2d)
                         .strafeToLinearHeading(new Vector2d(70, -15), Math.toRadians(90), new TranslationalVelConstraint(70))
 
@@ -130,23 +126,6 @@ public class RedFar extends LinearOpMode {
         );
 
     }
-    // private void shoot() {
-
-    //  robot.intake.setPower(ON);
-
-    //robot.leftIndex.setPosition(0);
-    //robot.rightIndex.setPosition(1);
-    //robot.belt.setPower(-1);
-    // delay(0.85); // wait 1 seconds for shooting
-
-    // Stop all
-
-    //spinning against
-    //  robot.leftIndex.setPosition(0.6);
-    //   robot.rightIndex.setPosition(0.4);
-    // belt.setPower(-0.3);
-
-    // }
 
 
     // -------- Delay helper ----------
