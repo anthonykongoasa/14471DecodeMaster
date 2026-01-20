@@ -1,10 +1,12 @@
 
 package org.firstinspires.ftc.teamcode.OpModes.Auto;
+import java.util.Arrays;
 
-import com.acmerobotics.roadrunner.trajectory.constraints.TranslationalVelConstraint;
-import com.acmerobotics.roadrunner.trajectory.constraints.TranslationalAccelConstraint;
-import com.acmerobotics.roadrunner.trajectory.constraints.AngularVelConstraint;
-import com.acmerobotics.roadrunner.trajectory.constraints.AngularAccelConstraint;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
+import com.acmerobotics.roadrunner.MinVelConstraint;
+//import com.acmerobotics.roadrunner.TranslationalAccelConstraint;
+import com.acmerobotics.roadrunner.AngularVelConstraint;
+//import com.acmerobotics.roadrunner.AngularAccelConstraint;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -16,6 +18,11 @@ import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
 @Autonomous(name = "BlueFar")
 public class BlueFar extends LinearOpMode {
+
+    MinVelConstraint velConstraint = new MinVelConstraint(Arrays.asList(
+            new TranslationalVelConstraint(30),
+            new AngularVelConstraint(2)
+    ));
 
     Pose2d startPose = new Pose2d(62, -16, Math.toRadians(0));
     //AUTO robot constructor
@@ -77,7 +84,7 @@ public class BlueFar extends LinearOpMode {
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
                         
-                        .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), new TranslationalVelConstraint(30),  new AngularVelConstraint(2)) 
+                        .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), velConstraint)
                         .lineToX(60, new TranslationalVelConstraint(30))
                         .waitSeconds(0.1)
           
@@ -107,7 +114,7 @@ public class BlueFar extends LinearOpMode {
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
-                        .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), new TranslationalVelConstraint(30),  new AngularVelConstraint(2)) 
+                        .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), velConstraint)
                         .lineToX(60, new TranslationalVelConstraint(30))
                         .waitSeconds(0.1)
           
