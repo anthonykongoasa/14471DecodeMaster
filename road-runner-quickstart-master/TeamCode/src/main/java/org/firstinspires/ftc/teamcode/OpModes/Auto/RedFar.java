@@ -4,10 +4,10 @@ package org.firstinspires.ftc.teamcode.OpModes.Auto;
 import java.util.Arrays;
 import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 
-//import com.acmerobotics.roadrunner.TranslationalAccelConstraint;
+import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.AngularVelConstraint;
 import com.acmerobotics.roadrunner.MinVelConstraint;
-//import com.acmerobotics.roadrunner.AngularAccelConstraint;
+import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -65,15 +65,15 @@ public class RedFar extends LinearOpMode {
         //intake 1 (motif)
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
-                        .strafeToLinearHeading(new Vector2d(35,30),Math.toRadians(90))
-                        .strafeToLinearHeading(new Vector2d(35,55),Math.toRadians(90))
+                        .strafeToLinearHeading(new Vector2d(45,25),Math.toRadians(90))
+                        .strafeToLinearHeading(new Vector2d(45,47),Math.toRadians(90))
 
                         .build()
         );
         // shoot 2
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(35, 55, Math.toRadians(90)))
+                robot.drive.actionBuilder(new Pose2d(45, 47, Math.toRadians(90)))
                         .strafeToLinearHeading(shootPos, Math.toRadians(-20))
                         .build()
         );
@@ -85,19 +85,22 @@ public class RedFar extends LinearOpMode {
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
                         
-                        .strafeToLinearHeading(new Vector2d(57 , 16), Math.toRadians(90), velConstraint)
-                        .lineToX(60, new TranslationalVelConstraint(30))
+                       // .strafeToLinearHeading(new Vector2d(57 , 16), Math.toRadians(90), velConstraint)
+                        .turnTo(Math.toRadians(85))
                         .waitSeconds(0.1)
-          
-                        .lineToY(60, new TranslationalVelConstraint(70)) // big move
-                        .lineToY(50 , new TranslationalVelConstraint(30))
-                        .lineToY(60,  new TranslationalVelConstraint(30))
+                        .strafeToConstantHeading(new Vector2d (57, 16))
+                       // .lineToX(60, new TranslationalVelConstraint(30))
+                        .waitSeconds(0.1)
+
+                        .lineToY(42, new TranslationalVelConstraint(70)) // big move
+                        .lineToY(32 , new TranslationalVelConstraint(30))
+                        .lineToY(42,  new TranslationalVelConstraint(30))
 
                         .build()
         );
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(60, 60, Math.toRadians(90)))
+                robot.drive.actionBuilder(drive.Localizer.getPose())
           
                        .strafeToLinearHeading(new Vector2d(50, 16), Math.toRadians(-20), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(shootPos, Math.toRadians(-20), new TranslationalVelConstraint(30))
@@ -115,19 +118,21 @@ public class RedFar extends LinearOpMode {
 
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
-                        .strafeToLinearHeading(new Vector2d(57, 16), Math.toRadians(90), velConstraint)
-                        .lineToX(60, new TranslationalVelConstraint(30))
+                        .turnTo(Math.toRadians(85))
                         .waitSeconds(0.1)
-          
-                        .lineToY(60, new TranslationalVelConstraint(70)) // big move
-                        .lineToY(50 , new TranslationalVelConstraint(30))
-                        .lineToY(60,  new TranslationalVelConstraint(30))
+                        .strafeToConstantHeading(new Vector2d (57, 16))
+                        // .lineToX(60, new TranslationalVelConstraint(30))
+                        .waitSeconds(0.1)
+
+                        .lineToY(42, new TranslationalVelConstraint(70)) // big move
+                        .lineToY(32 , new TranslationalVelConstraint(30))
+                        .lineToY(42,  new TranslationalVelConstraint(30))
                         .build()
         );
         //return + shoot #4
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(new Pose2d(60, 60, Math.toRadians(90)))
+                robot.drive.actionBuilder(drive.Localizer.getPose())
                         .strafeToLinearHeading(new Vector2d(50, 16), Math.toRadians(20), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(shootPos, Math.toRadians(-20), new TranslationalVelConstraint(30))
                         .build()

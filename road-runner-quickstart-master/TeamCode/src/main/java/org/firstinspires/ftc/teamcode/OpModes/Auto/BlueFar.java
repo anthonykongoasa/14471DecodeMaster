@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.MinVelConstraint;
-//import com.acmerobotics.roadrunner.TranslationalAccelConstraint;
+
 import com.acmerobotics.roadrunner.AngularVelConstraint;
-//import com.acmerobotics.roadrunner.AngularAccelConstraint;
+import com.acmerobotics.roadrunner.AccelConstraint;
+import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -84,8 +85,10 @@ public class BlueFar extends LinearOpMode {
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
                         
-                        .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), velConstraint)
+                       // .strafeToLinearHeading(new Vector2d(57 , -16), Math.toRadians(-90), velConstraint)
+                        .turnTo(Math.toRadians(-90))
                         .lineToX(60, new TranslationalVelConstraint(30))
+
                         .waitSeconds(0.1)
           
                         .lineToY(-60, new TranslationalVelConstraint(70)) // big move
