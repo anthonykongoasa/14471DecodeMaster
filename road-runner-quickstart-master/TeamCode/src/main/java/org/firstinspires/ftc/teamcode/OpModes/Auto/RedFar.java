@@ -46,8 +46,8 @@ public class RedFar extends LinearOpMode {
         robot.leftShooter.setVelocity(-FARVEL);
         robot.rightShooter.setVelocity(FARVEL);
 
-       Vector2d shootPos = new Vector2d(56, 16);
-        Pose2d shootPose2d  = new Pose2d(56, 16, Math.toRadians(-20));
+       Vector2d shootPos = new Vector2d(58, 16);
+        Pose2d shootPose2d  = new Pose2d(58, 16, Math.toRadians(-20));
 
         
         Actions.runBlocking(
@@ -88,7 +88,7 @@ public class RedFar extends LinearOpMode {
                        // .strafeToLinearHeading(new Vector2d(57 , 16), Math.toRadians(90), velConstraint)
                         .turnTo(Math.toRadians(85))
                         .waitSeconds(0.1)
-                        .strafeToConstantHeading(new Vector2d (57, 16))
+                       // .strafeToConstantHeading(new Vector2d (57, 16))
                        // .lineToX(60, new TranslationalVelConstraint(30))
                         .waitSeconds(0.1)
 
@@ -119,8 +119,8 @@ public class RedFar extends LinearOpMode {
         Actions.runBlocking(
                 robot.drive.actionBuilder(shootPose2d)
                         .turnTo(Math.toRadians(85))
-                        .waitSeconds(0.1)
-                        .strafeToConstantHeading(new Vector2d (57, 16))
+                      //  .waitSeconds(0.1)
+                      //  .strafeToConstantHeading(new Vector2d (57, 16))
                         // .lineToX(60, new TranslationalVelConstraint(30))
                         .waitSeconds(0.1)
 
