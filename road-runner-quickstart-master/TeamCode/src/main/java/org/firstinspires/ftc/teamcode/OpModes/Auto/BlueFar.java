@@ -99,7 +99,7 @@ public class BlueFar extends LinearOpMode {
         );
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(drive.Localizer.getPose()))
+                robot.drive.actionBuilder(robot.drive.localizer.getPose())
           
                        .strafeToLinearHeading(new Vector2d(50, -16), Math.toRadians(20), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(shootPos, Math.toRadians(20), new TranslationalVelConstraint(30))
@@ -130,7 +130,7 @@ public class BlueFar extends LinearOpMode {
         //return + shoot #4
         robot.intake.setPower(-0.1);
         Actions.runBlocking(
-                robot.drive.actionBuilder(drive.Localizer.getPose())
+                robot.drive.actionBuilder(robot.drive.localizer.getPose())
                         .strafeToLinearHeading(new Vector2d(50, -16), Math.toRadians(20), new TranslationalVelConstraint(70))
                         .strafeToLinearHeading(shootPos, Math.toRadians(20), new TranslationalVelConstraint(30))
                         .build()
