@@ -86,7 +86,7 @@ public class RedFar extends LinearOpMode {
                 robot.drive.actionBuilder(shootPose2d)
                         
                         //.strafeToLinearHeading(new Vector2d(56 , 16), Math.toRadians(90), velConstraint)
-                        .strafeToConstantHeading(new Vector2d (50, 16))
+                        .strafeToConstantHeading(new Vector2d (53, 16))
 
                         .turnTo(Math.toRadians(85))
 
@@ -94,10 +94,9 @@ public class RedFar extends LinearOpMode {
                      //   .strafeToConstantHeading(new Vector2d (55, 16))
                        // .lineToX(60, new TranslationalVelConstraint(30))
 
-
-                        .lineToY(44, new TranslationalVelConstraint(70)) // big move
-                        .lineToY(34 , new TranslationalVelConstraint(30))
-                        .lineToY(48,  new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(44, new TranslationalVelConstraint(70)) // big move
+                        .lineToYConstantHeading(34 , new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(48,  new TranslationalVelConstraint(30))
 
                         .build()
         );
