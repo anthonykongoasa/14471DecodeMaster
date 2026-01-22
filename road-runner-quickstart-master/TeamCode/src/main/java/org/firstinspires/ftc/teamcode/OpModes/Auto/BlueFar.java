@@ -91,9 +91,9 @@ public class BlueFar extends LinearOpMode {
 
                         .waitSeconds(0.1)
           
-                        .lineToY(-60, new TranslationalVelConstraint(70)) // big move
-                        .lineToY(-50 , new TranslationalVelConstraint(30))
-                        .lineToY(-60,  new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(-50, new TranslationalVelConstraint(70)) // big move
+                        .lineToYConstantHeading(-50 , new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(-50,  new TranslationalVelConstraint(30))
 
                         .build()
         );
@@ -122,9 +122,9 @@ public class BlueFar extends LinearOpMode {
 
                         .waitSeconds(0.1)
           
-                        .lineToY(-60, new TranslationalVelConstraint(70)) // big move
-                        .lineToY(-50 , new TranslationalVelConstraint(30))
-                        .lineToY(-60,  new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(-50, new TranslationalVelConstraint(70)) // big move
+                        .lineToYConstantHeading(-40 , new TranslationalVelConstraint(30))
+                        .lineToYConstantHeading(-50,  new TranslationalVelConstraint(30))
                         .build()
         );
         //return + shoot #4
