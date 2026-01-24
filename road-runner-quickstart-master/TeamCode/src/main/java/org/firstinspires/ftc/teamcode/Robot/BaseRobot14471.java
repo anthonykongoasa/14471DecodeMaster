@@ -108,6 +108,8 @@ public class BaseRobot14471 {
         //TODO try CR Servo controls
         leftIndex = hwMap.servo.get("lefthand");
         rightIndex = hwMap.servo.get("righthand");
+
+        leftShooter.setDirection(DcMotorEx.Direction.REVERSE);
     
 
     }
@@ -155,7 +157,7 @@ public class BaseRobot14471 {
     /* -------- Shooter / Intake Control -------- */
 
     public void spinUpShooter(double velocity) {
-        leftShooter.setVelocity(-velocity);
+        leftShooter.setVelocity(velocity);
         rightShooter.setVelocity(velocity);
     }
 
