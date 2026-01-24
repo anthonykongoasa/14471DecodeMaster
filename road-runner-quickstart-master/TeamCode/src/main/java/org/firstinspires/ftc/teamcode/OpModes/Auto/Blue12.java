@@ -37,8 +37,7 @@ public class Blue12 extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        robot.leftShooter.setVelocity(-NEARVEL);
-        robot.rightShooter.setVelocity(NEARVEL);
+        robot.spinUpShooter(NEARVEL);
 
         Vector2d shootPos = new Vector2d(-20, -16);
     
@@ -105,8 +104,7 @@ public class Blue12 extends LinearOpMode {
                         .strafeToLinearHeading(shootPos, Math.toRadians(55), new TranslationalVelConstraint(70))
                         .build()
         );
-        robot.leftShooter.setVelocity(-NEARVEL-25);
-        robot.rightShooter.setVelocity(NEARVEL+25);
+        robot.spinUpShooter(NEARVEL+25)
         robot.shoot();
         delay(0.85);
         robot.stopShootingAuto();
