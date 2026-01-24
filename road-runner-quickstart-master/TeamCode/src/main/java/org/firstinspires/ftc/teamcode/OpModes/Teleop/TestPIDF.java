@@ -1,17 +1,12 @@
 package org.firstinspires.ftc.teamcode.OpModes.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-import org.firstinspires.ftc.vision.VisionPortal;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import org.firstinspires.ftc.teamcode.Robot.BaseRobot14471;
 
 import java.util.List;
@@ -19,10 +14,10 @@ import java.util.List;
 @TeleOp(name="TestPIDF", group="Training")
 public class TestPIDF extends OpMode {
 
-    private double P =5;
+    private double P =0;
     private double I = 0;
     private double D = 0;
-    private double F = 12;
+    private double F = 12.5;
 
     BaseRobot14471 robot = new BaseRobot14471(false);  // TeleOp robot
 
@@ -131,6 +126,9 @@ public class TestPIDF extends OpMode {
         else if (intakePower < -0.05) {
             robot.reverseIndexers();
         }
+        else {
+            robot.stopShooting();
+        }
 
 
         // ---------------- PIDF live tuning with D-pad ----------------
@@ -157,8 +155,8 @@ public class TestPIDF extends OpMode {
                 robot.testPIDF(P, I, D, F);
             }
             if (fButtonNow) {
-                F += 0.1;
-                robot.testPIDF(P, I, D, F);
+                F += 0.5;
+                   robot.testPIDF(P, I, D, F);
             }
         } else if (comboDownNow && !comboDownPrev) {
             if (pButtonNow) {
@@ -175,13 +173,15 @@ public class TestPIDF extends OpMode {
             }
             if (fButtonNow) {
                 F -= 0.1;
-                robot.testPIDF(P, I, D, F);
+               robot.testPIDF(P, I, D, F);
             }
         }
 
 // Save previous states for next loop
         comboUpPrev = comboUpNow;
         comboDownPrev = comboDownNow;
+
+
 
 
 
@@ -193,10 +193,19 @@ public class TestPIDF extends OpMode {
         telemetry.addData("left shooter Velocity", leftVel);
         telemetry.addData("right shooter Velocity", rightVel);
         telemetry.addData("target velocity", targetVel);
+        
+        telemetry.addData("LEFTvel error", targetVel - leftVel);
+        telemetry.addData("RIGHTvel error", targetVel - rightVel);
+        telemetry.addData("LEFT steady?", Math.abs(targetVel - leftVel) < 30);
+        telemetry.addData("RIGHT steady?", Math.abs(targetVel - rightVel) <30);
+
+
         telemetry.addData("Current P: (gamepad2.Y) ", P);
         telemetry.addData("Current I: (gamepad2.X) ", I);
         telemetry.addData("Current D: (gamepad2.A) ", D);
         telemetry.addData("Current F: (gamepad2.B) ", F);
+        
+        
 
         telemetry.update();
     }
