@@ -79,12 +79,11 @@ public class TestPIDF extends OpMode {
         double rightVel = robot.rightShooter.getVelocity();
         if (gamepad1.left_bumper) {
             targetVel = 1150;
-            robot.spinUpShooterReverse(targetVel);
+            robot.spinUpShooter(targetVel);
         }
         else if (gamepad1.right_bumper) {
             targetVel = 1350;
-            robot.spinUpShooterReverse
-                    (targetVel);
+            robot.spinUpShooter(targetVel);
         }
         double intakePower = -(gamepad1.right_trigger-gamepad1.left_trigger);
         //added limits to intake, belt powers

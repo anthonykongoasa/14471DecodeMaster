@@ -104,7 +104,7 @@ public class Blue12 extends LinearOpMode {
                         .strafeToLinearHeading(shootPos, Math.toRadians(55), new TranslationalVelConstraint(70))
                         .build()
         );
-        robot.spinUpShooter(NEARVEL+25)
+        robot.spinUpShooter(NEARVEL+25);
         robot.shoot();
         delay(0.85);
         robot.stopShootingAuto();

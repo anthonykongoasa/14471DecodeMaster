@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import android.graphics.Color;
 import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+//import com.qualcomm.robotcore.hardware.VelocityPIDFCoefficients;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 
@@ -110,13 +110,20 @@ public class BaseRobot14471 {
         rightIndex = hwMap.servo.get("righthand");
 
         leftShooter.setDirection(DcMotorEx.Direction.REVERSE);
-    
+
+        leftShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+
 
     }
     public void initPIDF() {
-        PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.85); //still need to tune F :(
-        leftShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
-        rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
+       // PIDFCoefficients pidSettings = new PIDFCoefficients(120, 0, 0.8, 11.85); //still need to tune F :(
+        leftShooter.setVelocityPIDFCoefficients( 120, 0, 0.8, 11.85);
+        rightShooter.setVelocityPIDFCoefficients( 120, 0, 0.8, 11.85);
     }
 
     /**
@@ -128,9 +135,9 @@ public class BaseRobot14471 {
      * @param f
      */
     public void testPIDF(double p, double i, double d, double f) {
-        PIDFCoefficients pidSettings = new PIDFCoefficients(p, i, d, f); //still need to tune F :(
-        leftShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
-        rightShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidSettings);
+
+        leftShooter.setVelocityPIDFCoefficients( p, i, d, f);
+        rightShooter.setVelocityPIDFCoefficients( p, i , d, f);
     }
 
     /** 
