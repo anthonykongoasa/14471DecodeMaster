@@ -59,8 +59,6 @@ public class TestPIDF extends OpMode {
     @Override
     public void loop() {
 
-
-
             // Manual field-centric control
             double leftY = gamepad1.left_stick_y * SPEED_CONTROL;
             double leftX = gamepad1.left_stick_x * SPEED_CONTROL;
@@ -160,15 +158,15 @@ public class TestPIDF extends OpMode {
             }
         } else if (comboDownNow && !comboDownPrev) {
             if (pButtonNow) {
-                P -= 5;
+                P -= 2;
                 robot.testPIDF(P, I, D, F);
             }
             if (iButtonNow) {
-                I -= 0.3;
+                I -= 0.1;
                 robot.testPIDF(P, I, D, F);
             }
             if (dButtonNow) {
-                D -= 0.3;
+                D -= 0.1;
                 robot.testPIDF(P, I, D, F);
             }
             if (fButtonNow) {
