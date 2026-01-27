@@ -188,8 +188,8 @@ public class BaseRobot14471 {
     }
 
     public void stopShooting() {
-        intake.setPower(-0.3);
-        belt.setPower(-0.5);
+        intake.setPower(-0.15);
+        belt.setPower(-0.3);
         leftShooter.setVelocity(0);
         rightShooter.setVelocity(0);
 
