@@ -43,8 +43,7 @@ public class BlueFar extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        robot.leftShooter.setVelocity(-FARVEL);
-        robot.rightShooter.setVelocity(FARVEL);
+        robot.spinUpShooter(FARVEL);
 
        Vector2d shootPos = new Vector2d(58, -16);
         Pose2d shootPose2d  = new Pose2d(58, -16, Math.toRadians(20));

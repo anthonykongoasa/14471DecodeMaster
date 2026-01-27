@@ -36,8 +36,7 @@ public class Red12 extends LinearOpMode {
         waitForStart();
 
         if (isStopRequested()) return;
-        robot.leftShooter.setVelocity(-NEARVEL);
-        robot.rightShooter.setVelocity(NEARVEL);
+        robot.spinUpShooter(NEARVEL);
 
 
 
@@ -109,8 +108,7 @@ public class Red12 extends LinearOpMode {
                         .strafeToLinearHeading(shootPos, Math.toRadians(-46), new TranslationalVelConstraint(60))
                         .build()
         );
-        robot.leftShooter.setVelocity(-NEARVEL-25);
-        robot.rightShooter.setVelocity(NEARVEL+25);
+        robot.spinUpShooter(NEARVEL);
 
         robot.shoot();
         delay(0.85);

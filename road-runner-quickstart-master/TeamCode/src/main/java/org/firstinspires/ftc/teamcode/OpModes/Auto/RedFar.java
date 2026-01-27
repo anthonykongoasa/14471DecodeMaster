@@ -41,10 +41,11 @@ public class RedFar extends LinearOpMode {
 
         waitForStart();
 
-        if (isStopRequested()) return;
 
-        robot.leftShooter.setVelocity(-FARVEL);
-        robot.rightShooter.setVelocity(FARVEL);
+        if (isStopRequested()) return;
+        robot.spinUpShooter(FARVEL);
+
+
 
        Vector2d shootPos = new Vector2d(58, 16);
         Pose2d shootPose2d  = new Pose2d(58, 16, Math.toRadians(-20));
@@ -140,6 +141,8 @@ public class RedFar extends LinearOpMode {
                         .strafeToLinearHeading(shootPos, Math.toRadians(-20), new TranslationalVelConstraint(30))
                         .build()
         );
+        robot.spinUpShooter(FARVEL);
+
         robot.shoot();
         delay(0.85);
         robot.stopShooting(); // turn off shooter motors
