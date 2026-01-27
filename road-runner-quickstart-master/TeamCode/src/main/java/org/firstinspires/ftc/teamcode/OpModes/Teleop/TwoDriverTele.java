@@ -125,7 +125,7 @@ public class TwoDriverTele extends OpMode {
         }
 
         // Intake control from triggers
-        double intakePower = -(gamepad1.right_trigger - gamepad1.left_trigger);
+        double intakePower = -(gamepad2.right_trigger - gamepad2.left_trigger);
         boolean manualIntakeActive = Math.abs(intakePower) > 0.15;
 
         // Shooter readiness (intake does NOT block it)
