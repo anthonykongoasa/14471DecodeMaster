@@ -126,6 +126,8 @@ public class TestPIDF extends OpMode {
         }
         else {
             robot.stopShooting();
+            robot.reverseIndexers();
+            targetVel = 0;
         }
 
 
